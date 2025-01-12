@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity"
+    android:id="@+id/main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/background"
+            android:gravity="start|center"
+            android:orientation="horizontal">
+
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_back" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/tvHeaderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:gravity="left"
+                android:text="Tentang Saya"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:src="@drawable/myprofile"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:text="Ahmad Yusuf Rizieq"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:text="20220810088"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Ikon Phone -->
+            <ImageView
+                android:id="@+id/whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- Ikon Email -->
+            <ImageView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/email"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- Ikon Instagram -->
+            <ImageView
+                android:id="@+id/instagram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/instagram"/>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

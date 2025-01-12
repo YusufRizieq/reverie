@@ -1,12 +1,18 @@
 package com.fachrulziyyan.reverie;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,9 +62,39 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        // Navigasi ke AboutActivity
+        LinearLayout bAbout = view.findViewById(R.id.bAbout);
+        bAbout.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(),AboutActivity.class);
+            startActivity(intent);
+        });
+
+        // Popup konfirmasi keluar
+        LinearLayout bKeluar = view.findViewById(R.id.bKeluar);
+        bKeluar.setOnClickListener(v -> {
+            new AlertDialog.Builder(requireContext())
+                    .setTitle("Konfirmasi Keluar")
+                    .setMessage("Apakah yakin ingin keluar?")
+                    .setPositiveButton("YA", (dialog, which) -> {
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        requireActivity().finish();
+                    })
+                    .setNegativeButton("TIDAK", (dialog, which) -> dialog.dismiss())
+                    .show();
+        });
+
+        // Intent implicit untuk bPerson
+        LinearLayout bPerson = view.findViewById(R.id.bPerson);
+        bPerson.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:0123192838123"));
+            startActivity(intent);
+        });
+
+        return view;
     }
 }
