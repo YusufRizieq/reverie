@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TabActivity"
-    android:background="@color/background">
+    android:background="@color/white">
 
     <!-- ViewPager2 untuk fragment -->
     <androidx.viewpager2.widget.ViewPager2

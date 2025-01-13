@@ -87,13 +87,6 @@ public class ProfileFragment extends Fragment {
                     .show();
         });
 
-        // Intent implicit untuk bPerson
-        LinearLayout bPerson = view.findViewById(R.id.bPerson);
-        bPerson.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:0123192838123"));
-            startActivity(intent);
-        });
 
         return view;
     }
