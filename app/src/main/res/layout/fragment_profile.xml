@@ -43,38 +43,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@color/background">
 
             <ImageView
-                android:layout_width="250dp"
-                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:src="@drawable/reverie_logo"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:text="Kartu Keanggotaan"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="100dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="Ahmad Yusuf Rizieq"/>
+                <TextView
+                    android:layout_marginTop="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="Ahmad Yusuf Rizieq"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="Ahmad Yusuf Rizieq"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:text="Desa Harapan Indah Rt. 01/Rw. 06 Dusun Janji Palsu Kec. Pujangga Kab. Kekasih 456789"/>
+
 
         </LinearLayout>
 
@@ -119,29 +121,6 @@
                 android:textSize="16sp"
                 android:text="Keluar"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bPerson"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="180dp"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:text="Call Center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:text="0123-192838-123"/>
         </LinearLayout>
 
     </LinearLayout>
