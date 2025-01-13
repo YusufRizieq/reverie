@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,30 +23,68 @@ public class HomeFragment extends Fragment {
     private TextView countdownTimer;
     private RecyclerView flashSaleRecyclerView;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate layout untuk fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // Inisialisasi elemen UI
         countdownTimer = view.findViewById(R.id.countdownTimer);
         flashSaleRecyclerView = view.findViewById(R.id.flashSaleRecyclerView);
 
-        // Mulai countdown 6 hari
-        startCountdown();
-
-        // Set up RecyclerView dengan produk pilihan untuk Flash Sale
+        // Set up RecyclerView untuk Flash Sale
         flashSaleRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        flashSaleRecyclerView.setAdapter(new FlashSaleAdapter(getFlashSaleProducts()));
+        flashSaleRecyclerView.setAdapter(new FlashSaleAdapter(requireContext(), getFlashSaleProducts()));
+
+        // Set up RecyclerView untuk Rekomendasi Produk
         RecyclerView recommendationRecyclerView = view.findViewById(R.id.recommendationRecyclerView);
-        // Rekomendasi RecyclerView
         recommendationRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recommendationRecyclerView.setAdapter(new RecommendationAdapter(getContext(), getRecommendationProducts()));
+        recommendationRecyclerView.setAdapter(new RecommendationAdapter(requireContext(), getRecommendationProducts()));
+        // Handle Klik Layout Hoodie
+        View layoutHoodie = view.findViewById(R.id.layoutHoodie);
+        layoutHoodie.setOnClickListener(v -> {
+            // Ambil 5 produk dari indeks 1-5
+            List<Product> produkHoodie = getAllProducts().subList(0, 5);
+
+            // Kirim data melalui Intent
+            Intent intent = new Intent(getContext(), HoodieActivity.class);
+            intent.putParcelableArrayListExtra("produkList", new ArrayList<>(produkHoodie));
+            startActivity(intent);
+        });
+
+        // Tambahkan klik pada kategori Tshirt
+        View layoutTshirt = view.findViewById(R.id.layoutTshirt);
+        layoutTshirt.setOnClickListener(v -> {
+            // Ambil 5 produk terakhir
+            List<Product> produkTshirt = getAllProducts().subList(10, 15);
+
+            // Kirim data melalui Intent
+            Intent intent = new Intent(getContext(), TshirtActivity.class);
+            intent.putParcelableArrayListExtra("produkList", new ArrayList<>(produkTshirt));
+            startActivity(intent);
+        });
+        // Handle Klik Layout Jersey
+        View layoutJersey = view.findViewById(R.id.layoutJersey);
+        layoutJersey.setOnClickListener(v -> {
+            // Ambil 5 produk dari indeks 5-10
+            List<Product> produkJersey = getAllProducts().subList(5, 10);
+
+            // Kirim data melalui Intent
+            Intent intent = new Intent(getContext(), JerseyActivity.class);
+            intent.putParcelableArrayListExtra("produkList", new ArrayList<>(produkJersey));
+            startActivity(intent);
+        });
+
+
+        // Mulai countdown selama 6 hari
+        startCountdown();
 
         return view;
     }
 
+
     private void startCountdown() {
-        long sixDaysInMillis = 6 * 24 * 60 * 60 * 1000; // 6 hari
+        long sixDaysInMillis = 6 * 24 * 60 * 60 * 1000; // 6 hari dalam milidetik
         new CountDownTimer(sixDaysInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -54,6 +93,7 @@ public class HomeFragment extends Fragment {
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60;
                 long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60;
 
+                // Format waktu yang tersisa
                 countdownTimer.setText(String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds));
             }
 
@@ -145,11 +185,10 @@ public class HomeFragment extends Fragment {
     }
 
     private List<Product> getFlashSaleProducts() {
-        // Filter produk untuk Flash Sale
         List<Product> allProducts = getAllProducts();
         List<Product> flashSaleProducts = new ArrayList<>();
 
-        // Pilih produk berdasarkan logika tertentu
+        // Pilih produk untuk Flash Sale
         flashSaleProducts.add(allProducts.get(1));
         flashSaleProducts.add(allProducts.get(4));
         flashSaleProducts.add(allProducts.get(6));
@@ -158,18 +197,17 @@ public class HomeFragment extends Fragment {
         flashSaleProducts.add(allProducts.get(3));
         flashSaleProducts.add(allProducts.get(0));
 
-
         return flashSaleProducts;
     }
+
     private List<Product> getRecommendationProducts() {
-        // Ambil semua produk dari getAllProducts()
         List<Product> allProducts = getAllProducts();
 
-        // Acak urutan produk
+        // Acak daftar produk
         Collections.shuffle(allProducts);
 
+        // Batasi jumlah rekomendasi
         int recommendationCount = 6;
         return allProducts.subList(0, Math.min(recommendationCount, allProducts.size()));
     }
-
 }

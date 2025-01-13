@@ -37,7 +37,7 @@ public class AboutActivity extends AppCompatActivity {
         // Intent ke WhatsApp
         ImageView btnWhatsapp = findViewById(R.id.whatsapp);
         btnWhatsapp.setOnClickListener(view -> {
-            String whatsappUrl = "https://wa.me/08123456789";
+            String whatsappUrl = "https://wa.me/089628518304";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(whatsappUrl));
             startActivity(intent);
         });

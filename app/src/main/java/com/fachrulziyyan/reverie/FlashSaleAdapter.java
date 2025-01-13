@@ -1,5 +1,7 @@
 package com.fachrulziyyan.reverie;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,11 @@ import java.util.List;
 
 public class FlashSaleAdapter extends RecyclerView.Adapter<FlashSaleAdapter.FlashSaleViewHolder> {
 
+    private Context context; // Tambahkan variabel context
     private List<Product> products;
 
-    public FlashSaleAdapter(List<Product> products) {
+    public FlashSaleAdapter(Context context, List<Product> products) {
+        this.context = context;
         this.products = products;
     }
 
@@ -33,6 +37,16 @@ public class FlashSaleAdapter extends RecyclerView.Adapter<FlashSaleAdapter.Flas
         holder.productPrice.setText(product.getPrice());
         // Sembunyikan deskripsi
         holder.productDescription.setVisibility(View.GONE);
+
+        // Set OnClickListener pada item
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductDetail.class); // Pastikan nama aktivitas sesuai
+            intent.putExtra("title", product.getTitle());
+            intent.putExtra("price", product.getPrice());
+            intent.putExtra("description", product.getDescription());
+            intent.putExtra("imageResource", product.getImageResource());
+            context.startActivity(intent);
+        });
     }
 
     @Override

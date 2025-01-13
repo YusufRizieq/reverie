@@ -1,6 +1,7 @@
 package com.fachrulziyyan.reverie;
 
 import android.content.Context;
+import android.content.Intent; // Tambahkan impor ini
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,21 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         holder.price.setText(product.getPrice());
         holder.description.setText(product.getDescription());
         holder.image.setImageResource(product.getImageResource());
-        // Sembunyikan deskripsi
         holder.description.setVisibility(View.GONE);
 
+        // Tambahkan OnClickListener pada item MaterialCardView
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductDetail.class);
+            intent.putExtra("title", product.getTitle());
+            intent.putExtra("price", product.getPrice());
+            intent.putExtra("description", product.getDescription());
+            intent.putExtra("imageResource", product.getImageResource());
+
+            // Pastikan context adalah instance Activity
+            if (context instanceof android.app.Activity) {
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
