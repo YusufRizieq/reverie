@@ -46,15 +46,15 @@ public class AboutActivity extends AppCompatActivity {
         ImageView btnEmail = findViewById(R.id.email);
         btnEmail.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:holla.rullz@gmail.com"));
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Hello from the App!");
+            intent.setData(Uri.parse("mailto:yusuf.rizieq@gmail.com"));
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Halo!");
             startActivity(intent);
         });
 
         // Intent ke Instagram
         ImageView btnInstagram = findViewById(R.id.instagram);
         btnInstagram.setOnClickListener(view -> {
-            String instagramUrl = "https://www.instagram.com/azizi.asadel";
+            String instagramUrl = "https://www.instagram.com/ysfryzn";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(instagramUrl));
             startActivity(intent);
         });

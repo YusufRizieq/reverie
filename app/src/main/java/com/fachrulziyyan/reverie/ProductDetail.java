@@ -1,12 +1,11 @@
 package com.fachrulziyyan.reverie;
 
-
 import android.content.Intent;
+import android.net.Uri; // Tambahkan impor ini
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,11 +25,11 @@ public class ProductDetail extends AppCompatActivity {
         Button btnBeliSekarang = findViewById(R.id.btnBeliSekarang);
 
         // Ambil data dari Intent
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String price = intent.getStringExtra("price");
-        String description = intent.getStringExtra("description");
-        int imageResource = intent.getIntExtra("imageResource", 0);
+        Intent receivedIntent = getIntent();
+        String title = receivedIntent.getStringExtra("title");
+        String price = receivedIntent.getStringExtra("price");
+        String description = receivedIntent.getStringExtra("description");
+        int imageResource = receivedIntent.getIntExtra("imageResource", 0);
 
         // Set data ke UI
         tvJudul.setText(title);
@@ -43,9 +42,15 @@ public class ProductDetail extends AppCompatActivity {
 
         // Tombol "Beli Sekarang"
         btnBeliSekarang.setOnClickListener(v -> {
-            // Tambahkan logika pembelian, misalnya membuka halaman checkout
-            Toast.makeText(ProductDetail.this,
-                    "Beli produk: " + title, Toast.LENGTH_SHORT).show();
+            // Format URL dengan pesan template
+            String phoneNumber = "6289628518304"; // Ganti dengan nomor tujuan
+            String message = "Halo reverie Store! saya ingin memesan :%0ANama :%0AAlamat Lengkap :%0AKode Pos :%0ANama Item :%0AUkuran :%0AJumlah :%0ATerima kasih";
+            String url = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + message;
+
+            // Buat Intent untuk membuka URL
+            Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+            whatsappIntent.setData(Uri.parse(url));
+            startActivity(whatsappIntent);
         });
     }
 }
